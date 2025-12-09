@@ -506,6 +506,567 @@ int main(){
     input(a,m,n);
     output(a,m,n);
 }
-*/
+*//*
+#include <iostream>
+#define MAX 300
+using namespace std;
+void input(int *a, int &n){
+    cin >> n;
+    for (int i = 0; i < n; i++){
+        cin >> a[i];
+    }
+}
+void check(int *a, int n){
+    for (int i = 0; i < n; i++){
+        int k = 0;
+        int t = k;
+            for (int j = 0; j < n; j++)
+                if (a[j] >= a[i])
+                    k++;
+            if (k == a[i]){
+                cout<<k;
+                break;
+            }
+    }
 
+}
+int main(){
+    int a[MAX], n;
+    input(a, n);
+    check(a, n);
+}
+*//*
+#include <iostream>
+#define MAX 100
+using namespace std;
+void Loc(int a[][MAX], int m, int n, int k, int t){
+    int i = k, j = k;
+    for (; j < n - k; j++){
+        a[i][j] = t;
+        t++;
+    }
+    i++;
+    j--;
+    if (t == m*n) return;
+    for (;i < m - k; i++){
+        a[i][j] = t;
+        t++;
+    }
+    j--;
+    i--;
+    if (t == m*n) return;
+    for (; j > -1 + k; j--){
+        a[i][j] = t;
+        t++;
+    }
+    i--;
+    j++;
+    if (t == m*n) return;
+    for (;i >  k; i--){
+        a[i][j] = t;
+        t++;
+    }
+    i++;
+    j--;
+    if (t == m*n) return;
+    Loc(a, m, n, k + 1, t);
+
+}
+void output(int a[][MAX], int m, int n){
+    for (int i = 0; i < m; i++){
+        for (int j = 0; j < n; j++)
+            cout << " " << a[i][j] << " ";
+        cout << endl;
+    }
+}
+int main (){
+    int a[MAX][MAX], m, n, t = 0, k = 0, r =0;
+    cin >> m >> n;
+    Loc(a, m, n, k, t);
+    output(a, m, n);
+} 
+*//*
+#include <iostream>
+#include <string.h>
+using namespace std;
+int Count (char *s, char *w){
+    int k = strlen(w), t = 0;
+    for (int i = 0; s[i] != '\0'; i++){
+        int p = i, j;
+        for (j =0; w[j] != '\0'; j++){
+            char z,x;
+            if (w[j]>='a') z = w[j] -32;
+            else z = w[j] +32;
+            if (s[p]>='a') x = s[p] -32;
+            else x = s[p] +32;
+            if ((w[j] == s[p] ) || w[j] == x || z == s[p] ){
+                p++;
+                continue;
+            }
+                break;
+        }
+        if (j == k) { t++; i+= k-1;}
+    }
+    return t;
+   
+
+}
+int main (){
+    char s[100];
+    char w[100];
+    cin.getline(s, 100);
+    cin.getline(w, 100);
+    cout<<Count(s,w);
     
+}
+*//*
+    #include <iostream>
+    using namespace std;
+
+    void solve(int* arr, int n);
+
+    int main(){
+        int n; cin >> n;
+        int arr[n];
+        for (int i = 0; i < n; i++)
+            cin >> arr[i];
+        solve(arr, n);
+
+        return 0;
+    }
+    void solve(int *arr, int n){
+        int t = 0, m = 0;
+        for (int i = 0; ; i++ ){
+            int k = 0;
+            for (int j = 0; j < n; j++){
+                if (arr[j] == i || arr[j] == i + 1)
+                    k++;
+                    if (arr[j] > m) m = arr[j];
+            }
+            if (k > t) t = k;
+            if (i == m && m){ cout << t;
+                return;
+            }
+
+        }
+    }
+*//*
+#include <iostream>
+#define MAX 300
+using namespace std;
+void input(int a[MAX], int n){
+    for (int i = 0; i < n; i++)
+        cin >> a[i];
+}
+int Ski(int a[MAX], int n){
+    int k = a[0];
+    for (int i = 0; i < n; i++)
+        if (a[i] > k) k = a[i];
+    return k;
+}
+int MIN(int a[MAX], int n){
+    int k = a[0];
+    for (int i = 0; i < n; i++)
+        if (a[i] < k) k = a[i];
+    return k;
+}
+int Check(int a[MAX], int n){
+    int x = MIN(a, n);
+    int y = Ski(a, n);
+    return y - x - n +1;
+}
+int main (){
+    int a[MAX], n;
+    cin >> n;
+    input(a, n);
+    cout << Check(a, n);
+
+}
+*/
+/*
+#include <iostream>
+#include <string>
+using namespace std;
+#define MAX 255
+
+int myStrlen(char s[]);
+bool myStrcat(char s1[], char s2[]);
+
+int main()
+{
+	char s1[MAX], s2[MAX];
+	fgets(s1, MAX, stdin);
+	fgets(s2, MAX, stdin);
+	bool kt = myStrcat(s1, s2);
+    if (kt) cout << s1 << s2;
+    else cout << "Khong noi duoc. Khong du bo nho";
+}
+bool myStrcat(char s1[], char s2[]){
+    if (myStrlen(s1) + myStrlen(s2) < 254 ) 
+        return true;
+    return false;
+}
+int myStrlen(char s[]){
+    int i = 0;
+    while (s[i] != '\n')
+    i++;
+    s[i] = '\0';
+    return i;
+}
+    */
+/*
+   #include <iostream>
+#include <string.h>
+#include <stdio.h>
+using namespace std;
+#define MAX 300
+
+void ChenChuoiTaiVitriK(char s[], char s1[], int k);
+void Chuanhoa(char s[]);
+int myStrlen(char s[], int k);
+bool myStrcat(char s[], char s1[], char s2[]);
+void myStrcpy(char s[], int vt, char s1[], int k);
+int myStrstr(char s[], char s1[]);
+
+
+int main()
+{
+	char s[MAX];
+
+	fflush(stdin);
+	fgets(s,MAX,stdin);
+
+	char s1[MAX];
+	myStrcpy(s1, 0, s, 0);
+	Chuanhoa(s1);
+	cout << s << endl << s1 << endl;
+	return 0;
+}
+void ChenChuoiTaiVitriK(char s[], char s1[], int k){
+    int t = k;
+    int j = myStrlen(s, 0);
+    if (s1[k] != ' ' && s1[k-1] == '.'){
+        s[j+1] = '\0';
+        while (j > t){
+            s1[j] = s1[j-1];
+            j--;
+        }
+        s1[t] = ' ';
+        return;
+    }
+    while(s[k+1] != '\0'){
+        s1[k] = s1[k+1];
+        k++;
+    }
+}
+int myStrlen(char s[], int k){
+    int i = 0;
+    for (; s[i] !='\n' && s[i] != '\0';)
+        i++;
+    return i;
+}
+void myStrcpy(char s1[], int vt, char s[], int k){
+    int t = myStrlen(s, 0);
+    for (int i = 0; s[i] != '\n'; i++){
+        s1[i] = s[i];
+    }
+    int j = 0;
+    int l = 0;
+    int o = t;
+    while (j < o){
+        if (s1[j] != ' ') l++;
+        if (!l) {
+
+            j++;
+            continue;
+        }
+        if (s1[j] == ' ' && s1[j+1] == ' '){
+            ChenChuoiTaiVitriK(s, s1, j);
+            o--;
+        }
+        else if (s1[j] != ' ' && s1[j-1] == '.'){
+            ChenChuoiTaiVitriK(s, s1, j);
+            o++;
+            j++;
+        }
+        else if (s1[j] == ' ' && s1[j+1] == '.' && s1[j-1] != '.'){
+            ChenChuoiTaiVitriK(s, s1, j);
+            o--;
+        }
+        else j++;
+}
+s[t] = '\0';
+s1[o] = '\0';
+}
+void Chuanhoa(char s[]){
+    int i = 0;
+    int k = myStrlen(s, 0);
+    while (s[i] == ' '){
+        for (int j = 0; j < k; j++){
+            s[j] = s[j+1];
+        }
+        k--;
+    }
+    return;
+}
+*/
+/*
+#include <iostream>
+#include <string.h>
+#include <stdio.h>
+using namespace std;
+#define MAX 300
+
+void DemKyTu(char s[]);
+int myStrcmp(char s1[MAX], char s2[MAX]);
+int myStrlen(char s[], int k);
+
+int main()
+{
+	char s[MAX];
+	fgets(s,MAX,stdin);	//Nhap chuoi s	
+	if (myStrcmp(s, "") == 0)
+		cout << "Chuoi rong." << endl;
+	else
+		DemKyTu(s);
+
+	return 0;
+}
+int myStrcmp(char s1[MAX], char s2[MAX]){
+    if (s1[0] == '\n') return 0;
+    if (s2[0] == '\0') return 1;
+    int t = 0;
+        for (int i = 0; s1[i] != '\n'; i++)
+            if (s1[i] == s2[0])
+                t++;
+    return t;
+}
+void DemKyTu(char s[]){
+    char x[MAX];
+      int t = 0;
+    for (int i = 0; s[i] != '\n'; i++){
+        int j = 0;
+        int b = 0;
+        for (int k = 0; x[k] != '\0'; k++)
+            if (x[k] == s[i])
+                b++;
+        char m[MAX];
+        m[0] = s[i];
+         if (b) continue;
+         cout << s[i] << ": " << myStrcmp(s, m) << endl;
+         x[t] = s[i];
+         t++;
+
+}
+}
+*/
+/*
+#include <iostream>
+#include <string.h>
+#include <stdio.h>
+using namespace std;
+#define MAX 300
+
+void DemTieng(char s1[]);
+int myStrcmp(char s1[], char s2[]);
+int myStrlen(char s[], int k);
+void myStrcpy(char s[], int vt, char s1[], int k);
+void myMemmove(char s[], int vt, int k);
+int myStrstr(char s[], char s1[]);
+void mySubstr(char s[], int b, int count, char ss[]);
+bool myStrcat(char s1[], char s2[]);
+
+int main()
+{
+	char s[MAX];
+	fgets(s,MAX,stdin);
+	if (myStrcmp(s, "") == 0)
+		cout << "Chuoi rong." << endl;
+	else
+		DemTieng(s);
+	return 0;
+}
+
+int myStrcmp(char s1[], char s2[]){
+    if (s1[0] == '\n') return 0;
+    return 1;
+}
+void myStrcpy(char s[], int vt, char s1[], int k){
+    int r = 0, f = 0;
+    for (int i = 0; i < k; i++){
+        int m = 0;
+        if (s[i] == s1[0] && (i == 0 || s[i - 1] == ' ')) {
+            for (int j = 0; s1[j] != '\0'; j++){
+                if (s1[j] != s[i+j])
+                    m--;
+                    f= i + j;
+            }
+            if (s[f+1] != ' ' && s[f+1] != '\n') m--;
+        if (!m) r++;
+        }
+    }
+    if (r < 2){
+        int u = 0, f = 0;
+    for (int i = 0; s[i] != '\n'; i++){
+        int m = 0;
+        if (s[i] == s1[0] && (i == 0 || s[i -1] == ' ')) {
+            for (int j = 0; s1[j] != '\0'; j++){
+                if (s1[j] != s[i+j])
+                    m--;
+                    f= i + j;
+            }
+            if (s[f+1] != ' ' && s[f+1] != '\n') m--;
+        if (!m) u++;
+        }
+}
+        cout << s1 << ": " << u <<endl;
+    }
+}
+void DemTieng(char s1[]){
+    char x[MAX];
+    int i = 0, t = 0;
+    do{ 
+          if ((s1[i] == ' ' || s1[i] == '\n') && s1[i-1] != ' ' && i){
+        x[t] = '\0';
+        myStrcpy(s1, 0, x, i);
+        i++;
+        t = 0;
+        x[0] = '\0';
+    }
+        if (s1[i] != ' '){
+         x[t] = s1[i];
+         t++;
+        }
+        i++;
+    } while (s1[i] != '\0');
+}
+*//* Email hop li
+#include <iostream>
+#include <string.h>
+#define MAX 300
+using namespace std;
+void fun(char *s){
+    int m = 0;
+    char *z = strrchr(s, '@');
+    for (int i = 0; z[i] != '\0'; i++)
+        if (z[i] == ' ' || z[i]  == '.')
+            m++;
+    if (m) {
+        cout << "Invalid";
+        return;
+    }
+
+
+    int k = 0;
+    for (int i = 0; s[i] != '\0'; i++)
+        if (s[i] == '@' || s[i] == ' ');
+            k++;
+    if (k == 1){
+        char *x = strchr(s, '@');
+        int t = 0;
+        for (int i = 0; x[i] != '\0'; i++)
+            if (x[i] == '.')
+                t++;
+        if (t == 1){
+            cout << "Valid";
+            return;
+        }
+}
+        cout << "Invalid";
+}
+int main (){
+    char s[MAX];
+    cin.getline(s,MAX);
+    fun(s);
+    return 0;
+}
+*//*
+#include <iostream>
+#include <string.h>
+#include <string>
+#define MAX 300
+using namespace std;
+void fun(char *s){
+    char k[MAX], l[MAX];
+    for (int i = 0; s[i] != '\0'; i++){
+        if (s[i] == '@'){
+            k[0] = '\0';
+            int t = 0;
+            while(s[i]!=' '){
+                k[t] = s[i];
+                t++;
+                i++;
+            }
+            int v = 0;
+            if (strstr(l, k) == NULL){
+                char* g = strchr(s, '@');
+                while (strstr(g, k)!=''){
+                    v++;
+                    g[0] = '.';
+                    g = strchr(g, '@');
+                }
+                cout << k << ": " << v <<endl;
+                strcat(l,k);
+            }
+        }
+}
+}
+int main (){
+    char s[MAX];
+    cin.getline(s,MAX);
+    fun(s);
+    return 0;
+}
+*/
+#include <iostream>
+#include <string.h>
+using namespace std;
+#define MAX 300
+
+int myStrcmp(char s1[], char s2[]);
+int myStrlen(char s[], int k);
+void myStrcpy(char s[], int vt, char s1[], int k);
+void mySubstr(char s[], int b, int count, char ss[]);
+bool myStrcat(char s1[], char s2[]);
+void StringReverse(char st[]);
+
+int main()
+{
+	char s[MAX];
+	fgets(s, MAX, stdin);
+	if (myStrcmp(s, "") == 0)
+		cout << "Chuoi rong." << endl;
+	else
+	{
+		StringReverse(s);
+		cout << s << endl;
+	}
+	return 0;
+}
+int myStrcmp(char s1[], char s2[]){
+    if (s1[0] == '\n') return 0;
+    else return 1;
+}
+void StringReverse(char st[]){
+    char s3[MAX];
+    int i = 0, t = 0;
+    while (st[i] != '\0'){
+        if (st[i] == ' ' || st[i] == '\n' ){
+            int g = i - t;
+            for (;t > 0; t--){
+                st[g] = s3[t-1];
+                g++;
+            }
+            if (st[i] == '\n'){
+                st[i] == '\0';
+                return;
+            }
+            i++;
+            t = 0;
+            s3[0] = '\0';
+        }
+        s3[t] = st[i];
+        i++;
+        t++;
+    }
+}
