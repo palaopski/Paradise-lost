@@ -1017,7 +1017,7 @@ int main (){
     fun(s);
     return 0;
 }
-*/
+*//* Dao nguoc tung tieng
 #include <iostream>
 #include <string.h>
 using namespace std;
@@ -1070,3 +1070,704 @@ void StringReverse(char st[]){
         t++;
     }
 }
+*/
+/*
+#include <iomanip>
+#include <iostream>
+#include <stdio.h>
+using namespace std;
+#define MAXN 100
+
+struct SinhVien {
+    char MASV[10];
+    char HoTen[100];
+    char NgaySinh[12];
+    char GioiTinh;
+    float DiemToan, DiemLy, DiemHoa, DTB;
+};
+void Nhap(SinhVien A[], int &n){
+    cin >> n;
+    for (int i = 0; i < n; i++){
+        cin >> A[i].MASV;
+        cin.ignore();
+        cin.getline(A[i].HoTen, 100); 
+         cin >> A[i].NgaySinh >> A[i].GioiTinh >> A[i].DiemToan >> A[i].DiemLy >> A[i].DiemHoa;
+        A[i].DTB = (A[i].DiemToan + A[i].DiemLy + A[i].DiemHoa)/3;
+    }
+}
+void Xuat(SinhVien A[], int n){
+    for (int i = 0; i < n; i++){
+        cout << A[i].MASV << '\t' << A[i].HoTen << '\t'<< A[i].NgaySinh << '\t'<< A[i].GioiTinh << '\t';
+        cout << A[i].DiemToan << '\t'<< A[i].DiemLy << '\t'<< A[i].DiemHoa << '\t';
+        cout << setprecision(3) << A[i].DTB <<endl;
+    }
+}
+int main() {
+    SinhVien A[MAXN];
+    int n;
+    Nhap(A, n);
+    Xuat(A, n);
+    return 0;
+}
+*/
+/*
+#include <iomanip>
+#include <iostream>
+#include <stdio.h>
+#include <string.h>
+using namespace std;
+#define MAXN 100
+
+struct SinhVien {
+    char MASV[10];
+    char HoTen[100];
+    char NgaySinh[12];
+    char GioiTinh;
+    float DiemToan, DiemLy, DiemHoa, DTB;
+};
+void Nhap(char *hoTenCanXoa){
+    cin.getline(hoTenCanXoa,100);
+}
+void Nhap(SinhVien A[], int &n){
+    cin >> n;
+    for (int i = 0; i < n; i++){cin >> A[i].MASV;
+        cin.ignore();
+        cin.getline(A[i].HoTen, 100); 
+        cin >> A[i].NgaySinh >> A[i].GioiTinh >> A[i].DiemToan >> A[i].DiemLy >> A[i].DiemHoa;
+        A[i].DTB = (A[i].DiemToan + A[i].DiemLy + A[i].DiemHoa)/3;
+    }
+}
+void XoaTheoHoTen(SinhVien A[], int &n, char *hoTenCanXoa){
+    for (int i = 0; i < n; i++){
+        if (strcmp(A[i].HoTen, hoTenCanXoa) == 0){
+            for (int j = i; j < n-1; j++){
+                A[j] = A[j+1];
+            }
+            n--;
+            i--;
+    }
+}
+}
+void Xuat(SinhVien A[], int n){
+    for (int i = 0; i < n; i++){
+        cout << A[i].MASV << '\t' << A[i].HoTen << '\t'<< A[i].NgaySinh << '\t'<< A[i].GioiTinh << '\t';
+        cout << A[i].DiemToan << '\t'<< A[i].DiemLy << '\t'<< A[i].DiemHoa << '\t';
+        cout << setprecision(3) << A[i].DTB <<endl;
+    }
+}
+
+int main() {
+    SinhVien A[MAXN];
+    char hoTenCanXoa[100];
+    int n;
+
+    Nhap(hoTenCanXoa);
+
+    Nhap(A, n);
+
+    XoaTheoHoTen(A, n, hoTenCanXoa);
+
+    Xuat(A, n);
+    return 0;
+}
+*//*
+#include <iostream>
+struct PhanSo{
+    float t;
+    float g;
+};
+void Nhap(PhanSo &a){
+    std::cin >> a.t >> a.g;
+}
+PhanSo Nhap(){
+    PhanSo u;
+    std::cin >> u.t >> u.g;
+    return u;
+}
+int SoSanh( PhanSo a, PhanSo b){
+    if (a.t/a.g > b.t/b.g) return 1;
+    else if (a.t/a.g < b.t/b.g) return -1;
+    else return 0;
+}
+int main() {
+    PhanSo a, b;
+    Nhap(a);
+    b = Nhap();
+    int kq = SoSanh(a, b);
+    if (kq == 0)
+        std::cout << "Hai phan so bang nhau.";
+    else if (kq > 0)
+        std::cout << "Phan so thu nhat LON hon phan so thu hai.";
+    else
+        std::cout << "Phan so thu nhat NHO hon phan so thu hai.";
+    return 0;
+}
+*//*
+#include <iostream>
+using namespace std;
+struct PhanSo{
+    long long t;
+    long long g;
+};
+
+void Nhap(PhanSo &a){
+    std::cin >> a.t >> a.g;
+}
+PhanSo Nhap(){
+    PhanSo u;
+    std::cin >> u.t >> u.g;
+    return u;
+}
+PhanSo Cong(PhanSo a, PhanSo b){
+    PhanSo Cong;
+    if(a.t && a.g && a.t % a.g == 0){
+        a.t /= a.g;
+        a.g = 1;
+    }
+    else if (a.t && a.g && a.g % a.t == 0){
+        a.g /= a.t;
+        a.t = 1;
+    }
+    if(b.t && b.g && b.t % b.g == 0){
+        b.t /= b.g;
+        b.g = 1;
+    }
+    else if (b.t && b.g && b.g % b.t == 0){
+        b.g /= b.t;
+        b.t = 1;
+    }
+    if ((a.t*b.g +a.g*b.t) % (a.g*b.g) ==0){
+        double t1 = a.t;
+        double g1 = a.g;
+        double t2 = b.t;
+        double g2 = b.g;
+        double t = t1/g1 + t2/g2;
+        Cong.t = t;
+        Cong.g = 0;
+        return Cong;
+    }
+    else {
+        if (a.g != b.g) {
+            Cong.t = a.t * b.g + a.g * b.t;
+            Cong.g = a.g * b.g;
+            if (Cong.t%Cong.g == 0){
+                Cong.t/Cong.g;
+            }
+            return Cong;
+        }
+        else {
+            Cong.t = a.t + b.t;
+            Cong.g = a.g;
+            return Cong;
+    }
+}
+}
+void Xuat(PhanSo Cong){
+    if (!Cong.g) cout << Cong.t;
+    else{
+        long long k = Cong.t;
+        while(k > 1){
+            if (Cong.t % k == 0 && Cong.g % k ==0){
+                Cong.t /= k;
+                Cong.g /= k;
+            }
+            k--;
+        }
+
+     cout << Cong.t << '/' << Cong.g;
+}
+}
+
+int main() {
+    PhanSo a, b;
+    Nhap(a);
+    b = Nhap();
+    Xuat(Cong(a, b));
+    return 0;
+}
+*//*
+#include <iostream>
+#include <string.h>
+using namespace std;
+struct TAIKHOAN{
+    char n[100];
+    char p[100];
+};
+void Nhap(TAIKHOAN A[100], int &n){
+    cin >> n;
+    for (int i = 0; i < n; i++){
+        cin.ignore();
+        cin.getline(A[i].n, 100);
+        cin.getline(A[i].p, 100);
+}
+}
+void KiemTra(TAIKHOAN A[100], int &n){
+    for (int i = 0; i < n; i++){
+        bool a = false, b = false, c = false;
+        for (int j = 0;  A[i].p[j] != '\0'; j++){
+            if (A[i].p[j] >= '0' && A[i].p[j] <= '9')
+                a = true;
+            if (A[i].p[j] >= 'A' && A[i].p[j] <= 'z')
+                b = true;
+            if (A[i].p[j] == '!' || A[i].p[j] == '@'|| A[i].p[j] == '#'|| A[i].p[j] == '$'|| A[i].p[j] == '%')
+                c = true;
+        }
+        if (!a || !b || !c || strlen(A[i].p) < 6){
+            cout << A[i].n << " " << A[i]. p << endl;
+        }
+    }
+
+}
+
+int main(){
+    TAIKHOAN A[100];
+    int n;
+    Nhap(A,n);
+    KiemTra(A,n);
+    return 0;
+}
+*/
+/*Sochanhet
+#include <iostream>
+#include <math.h>
+using namespace std;
+void fun(long long n){
+    if (!n) {
+        cout <<"YES";
+        return;
+    }
+    if (n%2){
+        cout <<"NO";
+        return;
+    }
+    return fun(n/10);
+}
+
+
+int main()
+{
+    long long n;
+    cin>>n;
+    fun(n);
+    return 0;
+}
+*/
+/* Cong so hang chan
+#include <iostream>
+#include <math.h>
+using namespace std;
+int Check(long long x){
+    if (!x) return 0;
+    return 1 + Check(x/10);
+
+}
+int Output(long long x){
+    if (!x) return 0;
+    return x%10 + Output(x/100);
+}
+
+int main(){
+    long long x;
+    cin >> x;
+    if (Check(x)%2) x /= 10;
+    cout << Output(x);
+
+    return 0;
+}
+*/
+/* -9
+
+#include <iostream>
+#include <math.h>
+using namespace std;
+int Skibidi(long long x){
+    if (!x) return 0;
+    if (x%10 + Skibidi(x/10) > 9)
+        return x%10 + Skibidi(x/10) - 9;
+    return x%10 + Skibidi(x/10);
+}
+
+int main(){
+    long long x;
+    cin >> x;
+    cout << Skibidi(x);
+}
+ */
+/* De quy so doi xung
+#include <iostream>
+#include <math.h>
+using namespace std;
+void Oh(long long x, long long &t){
+    t = t*10 + x% 10;
+    if (!(x/10)) return;
+    Oh(x/10, t);
+}
+
+int main(){
+    long long x, t = 0;
+    cin >> x;
+    Oh(x, t);
+    if(x == t && x/10 != 0)
+        cout << "YES";
+    else cout << "NO";
+}
+*/
+/* so hang MAX de quy
+#include <iostream> 
+using namespace std;
+int De(long long x){
+    if (!x) return 0;
+    return (x%10 >= De(x/10)? x%10 : De(x/10));
+}
+int main(){
+    long long x;
+    cin >> x;
+    cout << x << " - " <<De(x);
+}
+*/
+/* De quy so giam
+#include <iostream>
+#include <math.h>
+using namespace std;
+bool Skibidi(long long x){
+    if (x < 10) return false;
+    if (x%10 >= x/10 % 10 )
+        return true + Skibidi(x/10);
+    return false + Skibidi(x/10);
+}
+
+int main(){
+    long long x;
+    cin >> x;
+    if (x < 10) cout <<"No";
+    else
+        if(!Skibidi(x))
+            cout << "Yes";
+        else
+            cout << "No";
+}
+*/ 
+/*Tim cap phan tu doi nhau
+
+#include <iostream>
+#include <math.h>
+#define Max 1000
+using namespace std;
+void Input(int *a, int &n){
+    cin >> n;
+    for (int i = 0; i < n; i++)
+        cin >> a[i];
+}
+int Oh(int g, int &t){
+    t = t*10 + g%10;
+    if (g/10)
+    return Oh(g/10, t);
+    else return t;
+
+}
+void Fun(int *a, int n){
+    bool u = false;
+    for (int i = 0; i < n; i++){
+        for (int j = i+1; j < n; j++){
+            int t = 0;
+            if (a[i] == Oh(a[j], t)){
+                u = true;
+                if (a[i] <= a[j])
+                    cout << "{" << a[i] << ", " << a[j] << "}" << endl;
+                else
+                    cout << "{" << a[j] << ", " << a[i] << "}" << endl;
+            }
+        }
+    }
+    if (!u) cout << "No Find";
+}
+
+int main()
+{
+    int a[Max];
+    int n;
+    Input(a,n);
+    Fun(a,n); 
+    return 0;
+}
+*/
+/* SAME COUNT
+#include <iostream>
+#include <math.h>
+#define Max 1000
+using namespace std;
+void Input(int *a, int &n){
+    cin >> n;
+    for (int i = 0; i < n; i++)
+        cin >> a[i];
+}
+void Fun(int *a, int n){
+    int k = 0;
+    for (int i = 0; i < n; i++){
+        bool t = false;
+        int l = a[i] % 10;
+   if (a[i] > 10){ t = true;
+        while (a[i]){
+            if (l != a[i] % 10){
+                t = false;
+                break;
+            }
+            a[i] /= 10;
+
+        }
+    }
+    if (t) k ++;
+    }
+    if (k) cout << k;
+    else cout << "No Find";
+}
+
+
+int main()
+{
+    int a[Max];
+    int n;
+    Input(a,n);
+    Fun(a,n); 
+    return 0;
+}
+*/
+/* Check so giong nhau
+#include <iostream>
+#include <math.h>
+#define Max 1000
+using namespace std;
+void Input(int *a, int &n){
+    cin >> n;
+    for (int i = 0; i < n; i++)
+        cin >> a[i];
+}
+void Fun(int *a, int n){
+    for (int i = 0; i < n; i++){
+        for (int j = i+1; j < n; j++){
+        if (a[i] == a[j]){
+             cout <<"Yes";
+             return;
+        }
+    }
+}
+    cout <<"No";
+}
+
+
+int main()
+{
+    int a[Max];
+    int n;
+    Input(a,n);
+    Fun(a,n); 
+    return 0;
+}
+*/
+/* cout ra cac so xuat hinh nhieu nhat
+#include <iostream>
+#include <math.h>
+#define Max 1000
+using namespace std;
+void Input(int *a, int &n){
+    cin >> n;
+    for (int i = 0; i < n; i++)
+        cin >> a[i];
+}
+void Fun(int *a, int n){
+    int g = 0;
+    for (int i = 0; i < n; i++){
+        int f = 0;
+        for (int j = 0; j < n; j++)
+            if (a[i] == a[j]) f++;
+        if (f > g) g = f;
+    }
+    for (int i = 0; i < n; i++){
+        int f = 0;
+        for (int j = i; j < n; j++)
+            if (a[i] == a[j])
+                f++;
+        if (f == g && g != 1) cout << a[i] <<" ";
+    }
+    if (g == 1) cout <<"No Find";
+}
+
+int main()
+{
+    int a[Max];
+    int n;
+    Input(a,n);
+    Fun(a,n); 
+    return 0;
+}
+*/
+/* tim so nguyen to MIN va MAX
+#include <iostream>
+#include <math.h>
+#define Max 1000
+using namespace std;
+void Input(int *a, int &n){
+    cin >> n;
+    for (int i = 0; i < n; i++)
+        cin >> a[i];
+}
+bool Skibidi(int a){
+    if (a < 2) return false;
+    for (int i = 2; i*i <= a; i++)
+        if (a % i == 0 && a != 2) return false;
+    return true;
+}
+void Fun(int *a, int n){
+    int x = 0, y = 0;
+    for (int i = 0; i < n; i++){
+        if (Skibidi(a[i])){
+            if (!x) x = a[i];
+            if (a[i] < x) x = a[i];
+            else if (a[i] > y) y = a[i];
+        }
+    }
+    if (x) cout << x << " " << y ;
+    else cout << "No";
+}
+int main(){
+    int a[Max];
+    int n;
+    Input(a,n);
+    Fun(a,n); 
+    return 0;
+}
+*//*bai 2 ong Thang
+#include <iostream>
+using namespace std;
+int NguyenTo(int &n){
+    int p = 2;
+    if (p > n) {n = p; return p;}
+    p++;
+    while(1){
+        bool h = true;
+        for (int i = 2; i*i <= p; i++){
+            if (p % i == 0) h = false;
+        }
+        if (h)
+            if (p > n) {n = p; return p;}
+        p++;
+    }
+}
+int main(){
+    int n;
+    cin >> n;
+    int a[n][n];
+    int t = 1;
+    for (int i = 0; i < n - 1; i++){
+        int k = i;
+        for (int j = 0; k >= 0; j++){
+            a[k][j] = t*t;
+            t++;
+            k--;
+        }
+    }
+    int y = 0;
+    for (int i = n - 1; i >= 0; i--){
+        int l = i;
+        for (int j = n - 1; l < n; j--){
+            a[l][j] = NguyenTo(y);
+            l++;
+        }
+    }
+    for (int i = 0; i < n; i++){
+        for (int j = 0; j < n; j++)
+            cout << a[i][j] << " ";
+        cout << endl;
+    }
+    }
+*//*
+#include <iostream>
+using namespace std;
+int main(){
+    int e = 0;
+    int q = 0;
+    while (1){
+    int a[8][8];
+    int c[8];
+    int d[8];
+    int t = 0;
+    for (int i = 0; i < 8; i++){
+            for (int j = 0; j < 8; j++){
+                a[i][j] = 0;
+            }
+        }
+    for (int i = 0; i < 8; i++){
+        for (int j = 0; j < 8; j++){
+            bool g = true;
+            for (int r = 0; r < t; r++){
+                if (i == d[r] || j == c[r])
+                    g = false;
+            }
+        if (g && t < 8 && a[i][j] != -1){
+            a[i][j] = 1;
+            d[t] = i;
+            c[t] = j;
+            t++;
+            int f = i+1;
+            int g = j+1;
+            while(f < 8 && g < 8){
+                a[f][g] = -1;
+                f++;
+                g++;
+            }
+            int v = i - 1;
+            int b = j - 1;
+            while (v > -1 && b > -1){
+                a[v][b] = -1;
+                v--;
+                b--;
+            }
+        }
+    }
+}
+    if (t > 7 )
+        for (int i = 0; i < 8; i++){
+            for (int j = 0; j < 8; j++){
+                cout << a[i][j] << " ";
+            }
+            cout << endl;
+        }
+    if (t > 7){
+         break;
+    }
+}
+}
+*/
+#include <iostream>
+using namespace std;
+int main(){
+    int a, b , c, l, p = 0, r = 0;
+    cin >> a >> b >> c;
+    int d[a];
+    for (int i = 0; i < a; i++)
+        d[i] = 0;
+    for (int i = 0; i < c; i ++){
+        cin >> l;
+        d[l-1] = 1;
+    }
+     for (int i = 0; i < b; i++){
+        if (d[i] == 1) r++;
+    }
+    p = r;
+    for (int i = b; i < a; i++){
+        if (d[i] == 1) p++;
+        if (d[i-b] == 1 ) p--;
+        if (p < r) r = p;
+
+    }
+    cout << r;
+}
+    
+
+
+
+
+
+
+
+
